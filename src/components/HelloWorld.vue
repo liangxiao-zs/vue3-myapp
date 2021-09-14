@@ -99,7 +99,6 @@ export default defineComponent({
 
     const onOpenModal = () => {
       console.log(msg.value)
-      msg.value = '杳杳寒山道，落落冷涧滨'
       Modal.info({
         title: () => '我是第一个弹框',
         content: () => '江岸何人初见月，江月何时初照人？'

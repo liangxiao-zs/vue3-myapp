@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <a-button @click="onOpenModal">我是第一个按钮</a-button>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
@@ -12,18 +13,10 @@
     <ul>
       <li>
         <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
+          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript"
           target="_blank"
           rel="noopener"
-          >babel</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
-          rel="noopener"
-          >eslint</a
+          >typescript</a
         >
       </li>
     </ul>
@@ -86,13 +79,38 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "HelloWorld",
+<script lang="ts">
+import { defineComponent, UnwrapRef, reactive, toRefs } from 'vue'
+import { Modal } from 'ant-design-vue'
+
+interface FormState {
+  name: string
+}
+
+export default defineComponent({
   props: {
-    msg: String,
+    msg: String
   },
-};
+  setup(props) {
+    const { msg } = toRefs(props)
+    const formState: UnwrapRef<FormState> = reactive({
+      name: ''
+    })
+
+    const onOpenModal = () => {
+      console.log(msg.value)
+      msg.value = '杳杳寒山道，落落冷涧滨'
+      Modal.info({
+        title: () => '我是第一个弹框',
+        content: () => '江岸何人初见月，江月何时初照人？'
+      })
+    }
+    return {
+      formState,
+      onOpenModal
+    }
+  }
+})
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

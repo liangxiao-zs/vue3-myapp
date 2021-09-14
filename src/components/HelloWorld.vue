@@ -80,7 +80,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, UnwrapRef, reactive, toRefs } from 'vue'
+import { defineComponent, UnwrapRef, reactive, toRaw } from 'vue'
+import { useRoute } from 'vue-router'
 import { Modal } from 'ant-design-vue'
 
 interface FormState {
@@ -91,14 +92,16 @@ export default defineComponent({
   props: {
     msg: String
   },
-  setup(props) {
-    const { msg } = toRefs(props)
+  setup() {
     const formState: UnwrapRef<FormState> = reactive({
       name: ''
     })
 
+    const router = useRoute()
+
     const onOpenModal = () => {
-      console.log(msg.value)
+      console.log(toRaw(router))
+      console.log(router.path)
       Modal.info({
         title: () => '我是第一个弹框',
         content: () => '江岸何人初见月，江月何时初照人？'

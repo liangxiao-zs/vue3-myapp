@@ -4,7 +4,9 @@
   </div> -->
   <div id="components-layout-demo-basic" style="height: 100%">
     <a-layout>
-      <a-layout-sider>Sider</a-layout-sider>
+      <a-layout-sider>
+        <a-button @click="onOpenModal">我是第一个按钮</a-button>
+      </a-layout-sider>
       <a-layout>
         <a-layout-header>Header</a-layout-header>
         <a-layout-content>Content</a-layout-content>
@@ -51,12 +53,16 @@ export default defineComponent({
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-#components-layout-demo-basic .code-box-demo {
-  text-align: center;
+<style lang="less" scoped>
+#components-layout-demo-basic {
+  .code-box-demo {
+    text-align: center;
+  }
 }
-#components-layout-demo-basic .ant-layout.ant-layout-has-sider {
-  height: 100%;
+#components-layout-demo-basic {
+  .ant-layout.ant-layout-has-sider {
+    height: 100%;
+  }
 }
 #components-layout-demo-basic .ant-layout-header,
 #components-layout-demo-basic .ant-layout-footer {

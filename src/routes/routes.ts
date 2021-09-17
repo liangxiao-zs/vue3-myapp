@@ -1,4 +1,4 @@
-import Home from '@/components/HelloWorld.vue'
+import Home from '@/components/Index.vue'
 import About from '@/components/About.vue'
 
 export const routes = [

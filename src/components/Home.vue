@@ -3,17 +3,18 @@
     <a-button @click="onOpenModal">我是第一个按钮</a-button>
   </div> -->
   <div id="components-layout-demo-basic" style="height: 100%">
-    <a-layout>
-      <a-layout-sider v-model:collapsed="collapsed" collapsible>
-        <a-button @click="onOpenModal">我是第一个按钮</a-button>
-        <Menu />
-      </a-layout-sider>
+    <a-layout style="height: 100%">
+      <a-layout-header>Header</a-layout-header>
       <a-layout>
-        <a-layout-header>Header</a-layout-header>
-        <a-layout-content>
-          <router-view></router-view>
-        </a-layout-content>
-        <a-layout-footer>Footer</a-layout-footer>
+        <a-layout-sider v-model:collapsed="collapsed" collapsible>
+          <Menu />
+        </a-layout-sider>
+        <a-layout>
+          <a-layout-content>
+            <router-view></router-view>
+          </a-layout-content>
+          <a-layout-footer>Footer</a-layout-footer>
+        </a-layout>
       </a-layout>
     </a-layout>
   </div>
@@ -22,7 +23,6 @@
 <script lang="ts">
 import { defineComponent, UnwrapRef, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Modal } from 'ant-design-vue'
 import Menu from './Menu.vue'
 
 interface FormState {
@@ -42,16 +42,8 @@ export default defineComponent({
     })
     const router = useRouter()
     router.push('/')
-
-    const onOpenModal = () => {
-      Modal.info({
-        title: () => '我是第一个弹框',
-        content: () => '江岸何人初见月，江月何时初照人？'
-      })
-    }
     return {
       formState,
-      onOpenModal,
       collapsed: ref<boolean>(false)
     }
   }
